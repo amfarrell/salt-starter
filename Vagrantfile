@@ -10,7 +10,6 @@ startup_script = "
 "
 
 if ENV.has_key?('DO_TOKEN')
-
     Vagrant.configure('2') do |config|
       config.vm.hostname = 'dropletname.example.com'
       # Alternatively, use provider.name below to set the Droplet name. config.vm.hostname takes precedence.
@@ -40,11 +39,9 @@ else
   Vagrant.configure("2") do |config|
     config.vm.box = "ubuntu/trusty64"
     config.vm.box_url = "ubuntu/trusty64"
-    config.vm.synced_folder ".", "/vagrant", type: "rsync",
-        rsync__exclude: ["nocommit.sh", "venv"]
 
     config.vm.network :forwarded_port, guest: 80, host: 8017
-    config.vm.network :forwarded_port, guest: 443, host: 8043
+    config.vm.network :forwarded_port, guest: 443, host: 8143
     config.vm.network :forwarded_port, guest: 8080, host: 8187
 
     startup_script += '
